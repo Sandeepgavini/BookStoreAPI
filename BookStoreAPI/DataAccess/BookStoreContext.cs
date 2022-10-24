@@ -15,10 +15,7 @@ namespace BookStoreAPI.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>()
-                .Ignore(b => b.HiddenKey);
-            modelBuilder.Entity<Book>().Property(x => x.AuthorName).HasDefaultValue("Anee Reeds");
-            modelBuilder.Entity<Book>().Ignore(x => x.HiddenKey);
+            new BookStoreConfig().Configure(modelBuilder.Entity<Book>());
         }
     }
 }
