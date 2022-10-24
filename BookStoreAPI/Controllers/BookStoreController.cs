@@ -30,7 +30,7 @@ namespace BookStoreAPI.Controllers
         {
             var book = await _service.GetById(id);
             if (book == null)
-                return NotFound(ServiceException.NO_USER);
+                return NotFound(ServiceExceptionConstants.NO_USER);
             return Ok(book);
         }
 
@@ -39,7 +39,7 @@ namespace BookStoreAPI.Controllers
         {
             int statusCode = await _service.AddBook(books);
             if (statusCode == -1)
-                return BadRequest(ServiceException.INVALID_TITLE);
+                return BadRequest(ServiceExceptionConstants.INVALID_TITLE);
             return CreatedAtAction(nameof(AddBook),books);
         }
 
@@ -49,7 +49,7 @@ namespace BookStoreAPI.Controllers
            
            int statusCode =  _service.UpdateBook(id, books);
             if(statusCode == -1)
-                return BadRequest(ServiceException.UPDATE_ERROR);
+                return BadRequest(ServiceExceptionConstants.UPDATE_ERROR);
 
             return Ok(books);
         }
@@ -59,7 +59,7 @@ namespace BookStoreAPI.Controllers
         {
             int statusCode = _service.DeleteBook(id);
             if(statusCode == 0)
-                return BadRequest(ServiceException.NO_USER);
+                return BadRequest(ServiceExceptionConstants.NO_USER);
             return NoContent(); 
         }
     }
